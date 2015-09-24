@@ -1,0 +1,11 @@
+# PHP
+#
+.idea/
+server_type.ini
+app_release
+logs
+node_modules
+.tmp
+.sass-cache
+
+
