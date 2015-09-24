@@ -3,8 +3,8 @@ $(document).ready(function(){
     var busPoint=[];
     var currentIndex=0;
     var busMarker='';
-    //var host='http://baidu.hollo.cn';
-    var host='http://local.hollo.baidu.com/';
+    var host='http://baidu.hollo.cn';
+    //var host='http://local.hollo.baidu.com/';
     /**
      * 初始化地图
      * @type {BMap.Map}
