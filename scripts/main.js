@@ -71,7 +71,7 @@ $(document).ready(function(){
     $('.js_position_me').unbind().bind('click',function(){
         if (navigator.geolocation)
         {
-            var options = {timeout:60000};
+            var options = {timeout:30000};
             navigator.geolocation.getCurrentPosition(function(position){
                 var lng = position.coords.longitude;
                 var lat = position.coords.latitude;
@@ -81,6 +81,7 @@ $(document).ready(function(){
                     url:'http://wxdev.hollo.cn/api/map/translate',
                     data: {lng:lng, lat:lat,type:'jsonp'},
                     dataType:'jsonp',
+                    async:true,
                     jsonp: "callback",
                     success:function(data){
                         map.removeOverlay(meMarker);
