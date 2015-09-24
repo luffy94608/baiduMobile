@@ -12,9 +12,9 @@ $(document).ready(function(){
     var map = new BMap.Map("mapContainer");
     var point = new BMap.Point(116.331398,39.897445);
     map.centerAndZoom(point, 12);
-    //var top_right_navigation=new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_ZOOM}); //右上角，仅包含平移和缩放按钮
-    //map.addControl(top_right_navigation);
-    map.addControl(new BMap.ZoomControl()); //添加地图缩放控件
+    var top_right_navigation=new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_ZOOM}); //右上角，仅包含平移和缩放按钮
+    map.addControl(top_right_navigation);
+    //map.addControl(new BMap.ZoomControl()); //添加地图缩放控件
 
     /**
      * 初始化坐标
@@ -44,7 +44,7 @@ $(document).ready(function(){
         busMarker = new BMap.Marker(initPoint[0],{icon:myIcon,offset:new BMap.Size(13, 8)});  // 创建标注
 
         map.addOverlay(busMarker);               // 将标注添加到地图中
-        //busMarker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+        busMarker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
 
     };
     //initBusPointMap(116.307907,40.056941,true);//中关村
