@@ -4,7 +4,14 @@ $(document).ready(function(){
     var currentIndex=0;
     var busMarker='';
     var host='http://baidu.hollo.cn';
-    //var host='http://local.hollo.baidu.com/';
+
+    /**
+     * 处理窗口高度移除百度标示
+     */
+    $('#mapContainer').css('height',$(window).height());
+    setTimeout(function(){
+        $('.anchorBL').remove();
+    },600);
     /**
      * 初始化地图
      * @type {BMap.Map}
@@ -92,7 +99,7 @@ $(document).ready(function(){
                         });
                         meMarker = new BMap.Marker(mePoint,{icon:meIcon,offset:new BMap.Size(33, 33)});
                         map.addOverlay(meMarker);
-                        map.setViewport([mePoint]);
+                        //map.setViewport([mePoint]);
                         map.panTo(mePoint);
                     }
                 });
