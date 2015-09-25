@@ -55,13 +55,15 @@ $(document).ready(function(){
 
     };
     //initBusPointMap(116.307907,40.056941,true);//中关村
-    initBusPointMap(116.301324,40.055343,true);//百度
+    //initBusPointMap(116.301324,40.055343,true);//百度
     //initBusPointMap(116.330152,39.965082,true);//寰太大厦
 
     /**
      * 定位班车
      */
     $('.js_position_bus').unbind().bind('click',function() {
+        alert('无班车信息');
+        return false;
         map.setViewport([busPoint[currentIndex]]);
         var max=busPoint.length;
         if(busPoint[currentIndex]){
