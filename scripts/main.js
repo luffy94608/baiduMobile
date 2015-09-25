@@ -54,7 +54,8 @@ $(document).ready(function(){
         busMarker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
 
     };
-    initBusPointMap(116.307907,40.056941,true);//中关村
+    //initBusPointMap(116.307907,40.056941,true);//中关村
+    initBusPointMap(116.301324,40.055343,true);//百度
     //initBusPointMap(116.330152,39.965082,true);//寰太大厦
 
     /**
