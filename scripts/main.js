@@ -91,6 +91,7 @@ $(document).ready(function(){
                 },
                 listener:function(res){
                     map.removeOverlay(meMarker);
+                    alert('longitude:'+res.longitude+'==latitude:'+res.latitude);
                     var mePoint= new BMap.Point(res.longitude,res.latitude);
                     var meIcon = new BMap.Icon(host+"/images/icon-position-me.png", new BMap.Size(67, 67), {
                         imageSize: new BMap.Size(67, 67),
