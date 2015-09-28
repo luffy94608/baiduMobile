@@ -61,6 +61,7 @@ class ControllerBase extends WechatControllerBase
 
     protected function checkReferer()
     {
+        return false;
         $refer = $_SERVER['HTTP_REFERER'];
         if(empty($refer))
             $this->inputRefererErrorResult();

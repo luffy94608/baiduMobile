@@ -164,4 +164,6 @@ angular.module('weChatHrApp')
         $timeout(function(){
             $('.anchorBL').remove();
         },1000);
+        $('.map-body').css('height',$(window).height());
+
     });

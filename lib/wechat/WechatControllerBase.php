@@ -18,6 +18,6 @@ class WechatControllerBase  extends YafController
         parent::init();
         $session = Yaf_Session::getInstance();
         YafDebug::log("WechatControllerBase uid is".$this->uid." session open is".WeChatEnv::getOpenId());
-        $this->corpInfo = WeChatEnv::getCorpInfo();
+//        $this->corpInfo = WeChatEnv::getCorpInfo();
     }
 } 
