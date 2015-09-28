@@ -89,6 +89,7 @@ $(document).ready(function(){
                     alert('定位失败');
                 },
                 listener:function(data){
+                    alert(data)
                     map.removeOverlay(meMarker);
                     var mePoint= new BMap.Point(data.longitude,data.latitude);
                     var meIcon = new BMap.Icon(host+"/images/icon-position-me.png", new BMap.Size(67, 67), {
