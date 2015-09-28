@@ -43,12 +43,12 @@ $(document).ready(function(){
             map.setViewport(busPoint);
         }
         //http://developer.baidu.com/map/jsdemo/img/car.png
-        var myIcon = new BMap.Icon(host+"/images/icon-bus-position.png", new BMap.Size(80, 80), {
+        var myIcon = new BMap.Icon(host+"/images/icon-bus-position.png", new BMap.Size(40, 40), {
             imageSize: new BMap.Size(40, 40),
         });
 
         //map.removeOverlay(busMarker);
-        busMarker = new BMap.Marker(initPoint[0],{icon:myIcon,offset:new BMap.Size(13, 8)});  // 创建标注
+        busMarker = new BMap.Marker(initPoint[0],{icon:myIcon,offset:new BMap.Size(0, -20)});  // 创建标注
 
         map.addOverlay(busMarker);               // 将标注添加到地图中
         busMarker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
@@ -80,40 +80,63 @@ $(document).ready(function(){
      */
     var meMarker='';
     $('.js_position_me').unbind().bind('click',function(){
-        if (navigator.geolocation)
-        {
-            var options = {timeout:30000};
-            navigator.geolocation.getCurrentPosition(function(position){
-                var lng = position.coords.longitude;
-                var lat = position.coords.latitude;
+        if(BdHiJs){
+            BdHiJs.device.geolocation.get({
+                onSuccess:function(){
+                    alert('定位成功');
+                },
+                onfail:function(){
+                    alert('定位失败');
+                },
+                listener:function(data){
+                    alert(data);
+                    map.removeOverlay(meMarker);
+                    var mePoint= new BMap.Point(data.longitude,data.latitude);
+                    var meIcon = new BMap.Icon(host+"/images/icon-position-me.png", new BMap.Size(67, 67), {
+                        imageSize: new BMap.Size(67, 67),
+                    });
+                    meMarker = new BMap.Marker(mePoint,{icon:meIcon,offset:new BMap.Size(0, -33)});
+                    map.addOverlay(meMarker);
+                    map.panTo(mePoint);
+                }
 
-                $.ajax({
-                    type:'POST',
-                    url:'http://wxdev.hollo.cn/api/map/translate',
-                    data: {lng:lng, lat:lat,type:'jsonp'},
-                    dataType:'jsonp',
-                    async:true,
-                    jsonp: "callback",
-                    success:function(data){
-                        map.removeOverlay(meMarker);
-                        var mePoint= new BMap.Point(data[0].x,data[0].y);
-                        var meIcon = new BMap.Icon(host+"/images/icon-position-me.png", new BMap.Size(134, 134), {
-                            imageSize: new BMap.Size(67, 67),
-                        });
-                        meMarker = new BMap.Marker(mePoint,{icon:meIcon,offset:new BMap.Size(33, 33)});
-                        map.addOverlay(meMarker);
-                        //map.setViewport([mePoint]);
-                        map.panTo(mePoint);
-                    }
-                });
+            });
+        }else{
+            if (navigator.geolocation)
+            {
+                var options = {timeout:30000};
+                navigator.geolocation.getCurrentPosition(function(position){
+                    var lng = position.coords.longitude;
+                    var lat = position.coords.latitude;
 
-            },function(data){
-                console.log(data);
-            },options);
-        }
-        else
-        {
-            alert('浏览器不支持定位');
+                    $.ajax({
+                        type:'POST',
+                        url:'http://wxdev.hollo.cn/api/map/translate',
+                        data: {lng:lng, lat:lat,type:'jsonp'},
+                        dataType:'jsonp',
+                        async:true,
+                        jsonp: "callback",
+                        success:function(data){
+                            map.removeOverlay(meMarker);
+                            var mePoint= new BMap.Point(data[0].x,data[0].y);
+                            var meIcon = new BMap.Icon(host+"/images/icon-position-me.png", new BMap.Size(67, 67), {
+                                imageSize: new BMap.Size(67, 67),
+                            });
+                            meMarker = new BMap.Marker(mePoint,{icon:meIcon,offset:new BMap.Size(0, -33)});
+                            map.addOverlay(meMarker);
+                            //map.setViewport([mePoint]);
+                            map.panTo(mePoint);
+                        }
+                    });
+
+                },function(data){
+                    console.log(data);
+                },options);
+            }
+            else
+            {
+                alert('浏览器不支持定位');
+            }
         }
 
     });
