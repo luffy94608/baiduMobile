@@ -91,6 +91,9 @@ $(document).ready(function(){
                 },
                 listener:function(res){
                     map.removeOverlay(meMarker);
+                    if(typeof res=='string'){
+                        res=JSON.parse(res);
+                    }
                     alert(res);
                     alert(typeof res);
                     alert('longitude:'+res.longitude+'==latitude:'+res.latitude);
