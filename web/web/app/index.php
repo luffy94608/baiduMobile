@@ -157,11 +157,9 @@ $aesOpenId='';
 <script src="/scripts/services/util.js"></script>
 <script src="/scripts/services/http.js"></script>
 <script src="/scripts/services/config.js"></script>
-<script src="/scripts/services/cache.js"></script>
 <script src="/scripts/services/string.js"></script>
 <script src="/scripts/directives/wcontact-remind.js" ></script>
 <script src="/scripts/directives/toast.js"></script>
-<script src="/scripts/directives/ngTouch.js"></script>
 <script src="/scripts/directives/pull-up-refresh.js" ></script>
 
 <script src="/scripts/controllers/error.js"></script>

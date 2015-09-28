@@ -3,16 +3,13 @@
 angular.module('weChatHrApp')
     .controller('MapCtrl', function (APP_URL,$rootScope,$scope,initData,$routeParams,$location,$timeout,$interval) {
         $scope.info=initData.dept;
+
         // 百度地图初始化
         var map = new BMap.Map("mapContainer");
         var centerPoint = new BMap.Point(116.331398,39.897445);
         map.centerAndZoom(centerPoint, 11);
         var top_right_navigation=new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_ZOOM}); //右上角，仅包含平移和缩放按钮
         map.addControl(top_right_navigation);
-
-
-
-
         /**
          * 定位班车
          * @param lng
