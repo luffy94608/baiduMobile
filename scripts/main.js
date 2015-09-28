@@ -80,7 +80,7 @@ $(document).ready(function(){
      */
     var meMarker='';
     $('.js_position_me').unbind().bind('click',function(){
-        if(BdHiJs){
+        if(typeof BdHiJs !='undefined'){
             BdHiJs.device.geolocation.get({
                 onSuccess:function(){
                     alert('定位成功');
