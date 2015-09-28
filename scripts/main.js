@@ -80,6 +80,7 @@ $(document).ready(function(){
      */
     var meMarker='';
     $('.js_position_me').unbind().bind('click',function(){
+
         if(typeof BdHiJs !='undefined'){
             BdHiJs.device.geolocation.get({
                 onSuccess:function(){
@@ -88,10 +89,10 @@ $(document).ready(function(){
                 onfail:function(){
                     alert('定位失败');
                 },
-                listener:function(data){
-                    alert(data)
+                listener:function(res){
                     map.removeOverlay(meMarker);
-                    var mePoint= new BMap.Point(data.longitude,data.latitude);
+                    var mePoint= new BMap.Point(res.longitude,res.latitude);
+                    var mePoint= new BMap.Point(116.329897,39.96489);
                     var meIcon = new BMap.Icon(host+"/images/icon-position-me.png", new BMap.Size(67, 67), {
                         imageSize: new BMap.Size(67, 67),
                     });
