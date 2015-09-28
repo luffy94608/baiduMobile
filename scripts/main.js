@@ -94,16 +94,16 @@ $(document).ready(function(){
                     if(typeof res=='string'){
                         res=JSON.parse(res);
                     }
-                    alert(res);
-                    alert(typeof res);
-                    alert('longitude:'+res.longitude+'==latitude:'+res.latitude);
                     var mePoint= new BMap.Point(res.longitude,res.latitude);
                     var meIcon = new BMap.Icon(host+"/images/icon-position-me.png", new BMap.Size(67, 67), {
                         imageSize: new BMap.Size(67, 67),
                     });
                     meMarker = new BMap.Marker(mePoint,{icon:meIcon,offset:new BMap.Size(0, -33)});
                     map.addOverlay(meMarker);
-                    map.panTo(mePoint);
+                    map.setViewport([mePoint]);
+                    setTimeout(function(){
+                        map.panTo(mePoint);
+                    },400);
                 }
 
             });
