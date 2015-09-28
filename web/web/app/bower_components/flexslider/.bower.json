@@ -1,0 +1,12 @@
+{
+  "name": "flexslider",
+  "homepage": "https://github.com/woothemes/FlexSlider",
+  "_release": "a4647edaf7",
+  "_resolution": {
+    "type": "commit",
+    "commit": "a4647edaf7d44a32b1d568cef570128b8d28403b"
+  },
+  "_source": "git://github.com/woothemes/FlexSlider.git",
+  "_target": "a4647edaf7d44a32b1d568cef570128b8d28403b",
+  "_originalSource": "flexslider"
+}

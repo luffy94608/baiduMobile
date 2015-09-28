@@ -1,0 +1,236 @@
+/* Welcome to Compass.
+ * 旅游线路详情
+ */
+@import "compass/css3";
+@import "compass/css3/box";
+@import "compass/utilities";
+
+.hlt-detail{
+  padding-bottom: 100px;
+
+  article{
+    background: #ffffff;
+  }
+
+  .hlt-detail-title{
+    @include display-box;
+    font-size: 17px;
+    color: $text-1;
+    padding: 16px 0;
+    text-align: center;
+    span{
+      display: block;
+      margin: 0 10px;
+    }
+    i{
+      content: '';
+      position: relative;
+      display: block;
+      @include box-flex(1);
+      height:11px;
+      border-bottom: thin solid $border-color;
+    }
+    i:first-child:after,i:last-child:before{
+      content: '';
+      display: inline-block;
+      position: absolute;
+      top: 9px;
+      width: 5px;
+      height: 5px;
+      @include border-radius(50px);
+      background-color: $border-color;
+    }
+    i.left:after{
+      right: 0;
+    }
+    i.right:before{
+      left: 0;
+    }
+  }
+
+  .hlt-detail-content{
+    font-size: 15px;
+    color: $text-2;
+    line-height: 25px;
+    padding: 0 10px;
+
+    .hltdc-deadline{
+      font-size: 12px;
+      line-height: 15px;
+      color: $text-8;
+      text-align: center;
+      margin-bottom: 11px;
+      &.expired{
+        color: $text-11;
+      }
+    }
+    p{
+      margin: 5px;
+      white-space: pre;
+      word-wrap: break-word;
+
+    }
+    .hltdc-position{
+      font-size: 14px;
+      color: $text-3;
+      background-color: $bg-1;
+      padding: 3px 0 3px 5px;
+      @include border-radius(50px);
+      cursor: pointer;
+      &:after{
+        content: '';
+        vertical-align: middle;
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+        margin: -2px 3px 0 5px;
+        background: url("../images/travel-right.png") no-repeat center;
+        @include background-size(100%);
+      }
+    }
+  }
+  .hltd-collapsed-section{
+    overflow: hidden;
+   @include transition(all 0.3s);
+    &.collapsed{
+      height: 0;
+    }
+  }
+
+  .hlt-detail-collapsed{
+      text-align: center;
+      color: $text-1;
+      height: 44px;
+      line-height: 44px;
+      border-top:thin solid $border-color;
+      border-bottom:thin solid $border-color;
+      background-color: #ffffff;
+      &:after{
+        content: '';
+        display: inline-block;
+        width: 17px;
+        height: 10px;
+        margin: 0 10px;
+        background: url("../images/travel-up.png") no-repeat center;
+        @include background-size(100%);
+        @include transition(all 0.3s);
+      }
+      &.down:after{
+        @include transform(rotate(180deg))
+      }
+  }
+
+  .hlt-detail-img{
+    display: block;
+    @include legacy-pie-clearfix;
+    div{
+      width: 50%;
+      float: left;
+      padding: 10px;
+      @include box-sizing(border-box);
+      &:first-child{
+        padding: 10px 5px 10px 10px;
+      }
+      &:last-child{
+        padding: 10px 10px 10px 5px;
+      }
+      img{
+        width: 100%;
+        height: 100px;
+        overflow: hidden;
+        @include border-radius(5px);
+      }
+    }
+  }
+}
+.hltd-buy{
+  position: fixed;
+  bottom: 0;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  font-size: 17px;
+  color: $text-3;
+  height: 44px;
+  line-height: 44px;
+  background-color: $bg-1;
+  &.full{
+    background-color: $text-10;
+  }
+  &.reversed{
+    background-color: $bg-2;
+  }
+  &.expired{
+    background-color: $text-11;
+  }
+}
+.hlt-map-bottom{
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  ul[rn-carousel] {
+    overflow: inherit;
+    width:100%;
+    height:117px;
+    margin: 0 auto;
+  }
+  ul[rn-carousel-buffered] > li{
+    padding: 0 10px;
+    width: 94%;
+    position: absolute;
+    @include display-box;
+
+    @include box-sizing(border-box);
+  }
+  ul[rn-carousel-buffered] > li.last{
+    width: 100%;
+  }
+  .carousel-section {
+    position: relative;
+    width: 100%;;
+    display:inline-block;
+  }
+  .hlt-map-hint{
+      position: absolute;
+      bottom: 0;
+      @include box-flex(1);
+      @include user-select(none);
+      display: inline-block;
+      width:94%;
+      padding: 5px 10px 10px 10px;
+      @include box-sizing(border-box);
+      @include box-shadow(0 0 10px #B9B0B0);
+      background-color: $bg-5;
+      border: 1px solid $border-color;
+      h2{
+        font-size: 14px;
+        color: $text-1;
+        line-height: 30px;
+      }
+      p{
+        font-size: 13px;
+        color: $text-2;
+      }
+      button{
+        width: 100%;
+        height: 40px;
+        font-size: 16px;
+        line-height: 40px;
+        text-align: center;
+        color:$text-3;
+        @include border-radius(2px);
+        background-color: $bg-1;
+        &:before{
+          content: '';
+          display: inline-block;
+          vertical-align: middle;
+          position: relative;
+          right: 10px;
+          width: 16px;
+          height: 16px;
+          background: url("../images/icon-location.png") no-repeat center;
+          @include background-size(100%);
+        }
+      }
+  }
+}

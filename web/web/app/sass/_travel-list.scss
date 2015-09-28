@@ -1,0 +1,112 @@
+/* Welcome to Compass.
+ * 旅游线路
+ */
+@import "compass/css3";
+@import "compass/css3/box";
+@import "compass/utilities";
+
+.hlt-list{
+  li{
+    font-size: 16px;
+    margin: 10px 0;
+
+    header{
+      position: relative;
+      height: (380px/2);
+      overflow: hidden;
+      &.new:after{
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 44px;
+        height: 44px;
+        background: url("../images/new-zh.png") no-repeat center;
+        @include background-size(100%)
+      }
+      h2{
+        position: absolute;
+        bottom: 0;
+        @include box-sizing(border-box);
+        color: $text-3;
+        font-size: 1em;
+        width: 100%;
+        padding: 11px 5px 11px 10px;
+        background-color: #000000;
+        @include opacity(0.8);
+      }
+      img{
+        height: 100%;
+        width: 100%;
+//        background: url("../images/default@2x.png") no-repeat center;
+//        @include background-size(cover);
+      }
+    }
+
+    article{
+      @include display-box;
+      background-color: #ffffff;
+      padding: 6px 0 16px;
+      &>div:first-child{
+        display: block;
+        @include box-flex(1);
+        margin-left: 10px;
+        h3{
+          font-size: 16px;
+          color: $text-1;
+          line-height: 34px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+        sub{
+          font-size: 14px;
+          color: $text-2;
+          line-height: 25px;
+        }
+      }
+      &>div:nth-child(2){
+        line-height: 34px;
+        display: block;
+        span{
+          display: block;
+          font-size: 16px;
+          margin-left: 10px;
+        }
+        .reversed{
+          color: $text-5;
+        }
+        .full{
+          color: $text-10;
+        }
+      }
+      &>div:last-child{
+        span{
+          display: block;
+          font-size: 17px;
+          color: $text-8;
+          text-align: right;
+          line-height: 34px;
+          padding:0 10px 0 5px;
+        }
+        span.special{
+          color: $text-3;
+          font-size: 14px;
+          background-color: $bg-4;
+          @include border-corner-radius(top,left,50px);
+          @include border-corner-radius(bottom,left,50px);
+          span{
+            display: inline-block;
+            color: $text-3;
+            @include opacity(0.8);
+            font-size: 11px;
+            padding-right: 0;
+
+          }
+
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+handle:
+- directoryindex:  public/index.php 
+- rewrite: if(path ~ "^/(css/.*)$") goto "/public/$1"
+- rewrite: if(path ~ "^/(scripts/.*)$") goto "/public/$1"
+- rewrite: if(path ~ "^/(images/.*)$") goto "/public/$1"
+- rewrite: if(path == "/favicon.ico") goto "/public/favicon.ico"
+- rewrite: if( !is_file()) goto "public/index.php"
+
+- compress: if ( out_header["Content-type"] ~ "text/css" ) compress
+- compress: if ( out_header["Content-type"] ~ "text/javascript" ) compress
+- compress: if ( out_header["Content-type"] ~ "text/html" ) compress
+- compress: if ( out_header["Content-type"] ~ "text/plain" ) compress
+

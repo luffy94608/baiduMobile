@@ -1,0 +1,25 @@
+<div style="position: fixed;height: 100%;width: 100%;text-align: center;">
+    <div class="hl-sbp-header opacity"></div>
+    <div class="hl-sbp-header">
+        <input class="hl-sbp-input box-flex-1" type="text" ng-model="bus_code" placeholder="请输入班车车号">
+        <button type="button" class="hl-sbp-button" ng-click="search()">查询</button>
+    </div>
+
+    <div class="hl-sbp-desc" ng-show="hasDataResult">
+        <p class="hlsbpd-title">{{info.name}}</p>
+        <div ng-hide="currentLocation && currentLocation.next_station_name" class="hlsbpd-title">暂无实时位置信息</div>
+        <div ng-show="currentLocation && currentLocation.next_station_name">
+            <p class="hlsbpd-sub">当前位置：{{currentLocation.cur_pos}}</p>
+            <div class="hlsbpd-position">
+                <span class="box-flex-1">下一站：{{currentLocation.next_station_name}}  </span>
+                <span class="box-flex-1">预计到达时间：{{currentLocation.next_station_arrive_time}}  </span>
+            </div>
+        </div>
+
+    </div>
+    <button type="button" ng-click="locationBus()" class="hl-sbp-button hl-sbp-l-bus">定位班车</button>
+    <button type="button" ng-click="locationMe()" class="hl-sbp-button hl-sbp-l-me">定位我</button>
+
+    <div id="mapContainer" style="width: 100%;height: 100%;z-index: 10;">
+    </div>
+</div>

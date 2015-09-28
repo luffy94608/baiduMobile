@@ -1,0 +1,13 @@
+handle:
+- directoryindex:  app/index.html
+- rewrite: if(path ~ "^/(css/.*)$") goto "/app/$1"
+- rewrite: if(path ~ "^/(scripts/.*)$") goto "/app/$1"
+- rewrite: if(path ~ "^/(images/.*)$") goto "/app/$1"
+- rewrite: if(path == "/favicon.ico") goto "/app/favicon.ico"
+- rewrite: if( !is_file()) goto "/app/index.html"
+
+- compress: if ( out_header["Content-type"] ~ "text/css" ) compress
+- compress: if ( out_header["Content-type"] ~ "text/javascript" ) compress
+- compress: if ( out_header["Content-type"] ~ "text/html" ) compress
+- compress: if ( out_header["Content-type"] ~ "text/plain" ) compress
+

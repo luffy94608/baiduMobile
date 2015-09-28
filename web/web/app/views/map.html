@@ -1,0 +1,18 @@
+<div style="position: fixed;height: 100%;width: 100%;">
+    <div id="mapContainer" style="width: 100%;height: 100%;z-index: 10;">
+    </div>
+    <div class="hlt-map-bottom">
+        <!--轮播图-->
+        <div class="carousel-section" ng-if="slides && slides.length" >
+            <ul rn-carousel rn-carousel-index="index"  rn-carousel-pause-on-hover rn-carousel-buffered class="carousel2">
+                <li ng-repeat="slide in slides track by slide.id"  ng-class="{'last':(slides.length==1),'event':carouselIndex==slide.id?panTo(slide):''}" ng-click="toLocation(slide)">
+                    <div class="hlt-map-hint">
+                        <h2>{{(slide.id+1)+'.'}}{{slide.short_name}} {{slide.arrived_at}}</h2>
+                        <p>{{slide.verbose}}</p>
+                        <button>到这去</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

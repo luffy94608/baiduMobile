@@ -1,0 +1,109 @@
+/* Welcome to Compass.
+ * 旅游线路凭证
+ */
+@import "compass/css3";
+@import "compass/css3/box";
+@import "compass/utilities";
+
+.hlt-ticket{
+  li{
+    //票头
+    margin: 10px;
+    background-color: #ffffff;
+    header{
+      text-align: center;
+      padding: 10px 0;
+      h2{
+        font-size: 21px;
+        color: $text-1;
+      }
+      sub{
+        font-size: 12px;
+        color: $text-8;
+        margin-top: 10px;
+      }
+    }
+    //    分割线
+    nav{
+      @include display-box;
+      position: relative;
+      height: 20px;
+      overflow: hidden;
+      background: url("../images/gap-circle.png") repeat-x center;
+      @include box-flex(1);
+      &:before,&:after{
+        content: '';
+        position: absolute;
+        display: block;
+        width: 20px;
+        height: 20px;
+        @include border-radius(50px);
+        background-color: #E9EAEB;
+      }
+      &:before{
+        left: -10px;
+      }
+      &:after{
+        right: -10px;
+      }
+    }
+    //    票价格
+    .hltt-price{
+      text-align: center;
+      padding: 21px 0;
+      margin: 21px;
+      border: 1px dashed $text-5;
+      @include border-radius(5px);
+      background-color: #EFF0F1;
+      h2{
+        font-size: 18px;
+        line-height: 35px;
+        color: $text-1;
+        span{
+          position: relative;
+          top: -4px;
+          font-size: 35px;
+          vertical-align: middle;
+          font-weight: bolder;
+          color: $text-8;
+          margin: 0 12px;
+        }
+      }
+      sub{
+        font-size: 18px;
+        margin-top: 16px;
+        color: $text-2;
+      }
+    }
+
+    //    票内容
+    .hltt-desc{
+      font-size: 12px;
+      color: $text-4;
+      margin:0 21px;
+      line-height: 16px;
+    }
+  // 票操作
+    .hltt-action{
+      @include display-box;
+      button{
+        display: block;
+        width: 50%;
+        line-height: 40px;
+        font-size: 16px;
+        @include box-flex(1);
+        margin: 16px 10px;
+        @include border-radius(2px);
+        &.blue{
+          color: $text-3;
+          background-color: $text-5;
+        }
+        &.white{
+          color: $text-5;
+          border: 1px solid $text-5;
+        }
+      }
+    }
+  }
+
+}
