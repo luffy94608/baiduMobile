@@ -1,13 +1,15 @@
 'use strict';
 
 angular.module('weChatHrApp')
-    .controller('ListCtrl', function (IMG_HOST,APP_URL,$rootScope,$scope,initData,httpProtocol,$location) {
+    .controller('ListCtrl', function (IMG_HOST,APP_URL,$rootScope,$scope,httpProtocol,$location) {
         $rootScope.bg_white = true;
         $scope.imgHost=IMG_HOST;
         $scope.APP_URL=APP_URL;
         $scope.timestamp=0;
         $scope.cursor_id=0;
         $scope.list=[];
+        $scope.lat='';
+        $scope.lng='';
         $scope.loading=false;
         $scope.hasMore=false;
 
@@ -16,7 +18,7 @@ angular.module('weChatHrApp')
             if(!item.line_id){
                 return false;
             }
-            $location.url('/map?id='+item.line_schedule_id);
+            $location.url('/map?id='+item.line_schedule_id+'&lat='+$scope.lat+'&lng='+$scope.lng);
         };
 
         $scope.loadMore=function(){
@@ -52,6 +54,33 @@ angular.module('weChatHrApp')
                 $scope.cursor_id=$scope.list[$scope.list.length-1].cursor_id;
             }
         };
-        initWithData(initData);
+        //initWithData(initData);
+
+        var getInitData=function(){
+            httpProtocol.wpost({lat:$scope.lat,lng:$scope.lng,timestamp:$scope.timestamp,cursor_id:$scope.cursor_id,is_next:1},httpProtocol.POST_TYPE.GET_TRAVEL_LIST).then(function(data){
+                $('#loading_page').hide();//隐藏loading page
+                initWithData(data);
+            });
+        };
+        if(typeof BdHiJs !='undefined'){
+            BdHiJs.device.geolocation.get({
+                onSuccess:function(){
+                    alert('定位成功');
+                },
+                onfail:function(){
+                    alert('定位失败');
+                },
+                listener:function(res){
+                    if(typeof res=='string'){
+                        res=JSON.parse(res);
+                    }
+                    $scope.lat=res.latitude;
+                    $scope.lng=res.longitude;
+                    getInitData();
+                }
+            });
+        }else{
+            getInitData();
+        }
 
     });

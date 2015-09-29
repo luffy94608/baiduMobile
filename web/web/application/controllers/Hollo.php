@@ -41,7 +41,7 @@ class ControllerHollo extends ControllerBase
     }
 
     /**
-     * 获取旅游线路
+     * 班车线路
      */
     public function getTravelListAction()
     {
@@ -67,27 +67,6 @@ class ControllerHollo extends ControllerBase
         $this->inputResult($data);
     }
 
-
-    /**
-     * 获取旅游线路详情
-     */
-    public function getTravelDetailAction()
-    {
-        $this->checkReferer();
-        $params['id']=$this->getLegalParam('id','str');
-        if(in_array(false,$params,true))
-        {
-            $this->inputParamErrorResult();
-        }
-        $model=new HolloDataService();
-        $result=$model->getTravelDetail($params['id']);
-        $data='';
-        if($result->code==0)
-        {
-            $data=$result->data;
-        }
-        $this->inputResult($data);
-    }
 
     /*
     * 根据线路id查询实时位置 v2

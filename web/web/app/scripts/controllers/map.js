@@ -9,8 +9,7 @@ angular.module('weChatHrApp')
         $scope.currentindex=0;
         $scope.currentLocation='';
         $scope.busMarkers={};
-
-
+        $('#loading_page').hide();//隐藏loading page
 
         // 百度地图初始化
         var map = new BMap.Map("mapContainer");

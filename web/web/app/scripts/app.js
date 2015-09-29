@@ -74,7 +74,8 @@ angular.module('weChatHrApp', [
                 resolve:{
                     initData:['$route','httpProtocol',function($route,httpProtocol){
                         $route.current.title='线路列表';
-                        return  httpProtocol.wpost({},httpProtocol.POST_TYPE.GET_TRAVEL_LIST);
+                        return false;
+                        //return  httpProtocol.wpost({},httpProtocol.POST_TYPE.GET_TRAVEL_LIST);
                     }]
                 }
             })
@@ -84,8 +85,10 @@ angular.module('weChatHrApp', [
                 resolve:{
                     initData:['$route','httpProtocol',function($route,httpProtocol){
                         $route.current.title='班车位置';
-
-                        return  httpProtocol.wpost({},httpProtocol.POST_TYPE.GET_TRAVEL_LIST);
+                        var $params=$route.current.params;
+                        var lat=$params['lat'];
+                        var lng=$params['lng'];
+                        return  httpProtocol.wpost({lat:lat,lng:lng},httpProtocol.POST_TYPE.GET_TRAVEL_LIST);
                     }]
                 }
             })
@@ -125,7 +128,7 @@ angular.module('weChatHrApp', [
         };
         //重置自定义操作绑定的操作 如加载更多 remind 等
         var resetCustomHandle=function(){
-            $('#loading_page').hide();//隐藏loading page
+            //$('#loading_page').hide();//隐藏loading page
             //清空定时器
             if(window.loadingInterval){
                 clearInterval(window.loadingInterval);
