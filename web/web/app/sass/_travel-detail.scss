@@ -58,11 +58,11 @@
       }
       &>div:last-child{
         display: block;
-        position: relative;
+//        position: relative;
         width: 102px;
         button{
           position: absolute;
-          bottom: 0px;
+          bottom: 10px;
           width: 100px;
           height: 35px;
           font-size: 14px;
