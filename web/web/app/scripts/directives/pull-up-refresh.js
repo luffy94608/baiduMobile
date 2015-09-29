@@ -65,7 +65,8 @@ angular.module('weChatHrApp')
             },
             link: function (scope, elm, attr) {
                 $(window).unbind('scroll').bind('scroll',function(){
-                    var height=elm.height();
+                    //var height=elm.height();
+                    var height=elm[0].offsetHeight;
                     var top=$(window).scrollTop();
                     var screenHeight=window.screen.height;
                     if(top>0 && height-top-screenHeight<=0){

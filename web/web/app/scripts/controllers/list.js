@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('weChatHrApp')
-    .controller('ListCtrl', function (IMG_HOST,APP_URL,$scope,initData,httpProtocol,$location) {
+    .controller('ListCtrl', function (IMG_HOST,APP_URL,$rootScope,$scope,initData,httpProtocol,$location) {
+        $rootScope.bg_white = true;
         $scope.imgHost=IMG_HOST;
         $scope.APP_URL=APP_URL;
         $scope.timestamp=0;
@@ -15,7 +16,7 @@ angular.module('weChatHrApp')
             if(!item.line_id){
                 return false;
             }
-            $location.url('/map/'+item.line_id);
+            $location.url('/map?id='+item.line_schedule_id);
         };
 
         $scope.loadMore=function(){
@@ -35,15 +36,15 @@ angular.module('weChatHrApp')
             if(!data){
                 return false;
             }
-            if(data.lines && data.lines.length){
+            if(data.nearby_buses && data.nearby_buses.length){
                 $scope.hasMore=true;
             }else{
                 $scope.hasMore=false;
             }
             if($scope.list.length>0){
-                $scope.list=$scope.list.concat(data.lines);
+                $scope.list=$scope.list.concat(data.nearby_buses);
             }else{
-                $scope.list=data.lines;
+                $scope.list=data.nearby_buses;
             }
 
             $scope.timestamp=data.timestamp;

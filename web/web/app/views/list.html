@@ -1,29 +1,20 @@
-<ul class="hlt-list" when-scrolled="loadMore()" when-end="hasMore" >
-    <li class="empty-title" ng-hide="list && list.length">
-       精品旅游线路即将到来
+<li class="empty-title" ng-hide="list && list.length">
+    暂无线路
+</li>
+<ul class="hlt-list" when-scrolled="loadMore()" when-end="hasMore" ng-show="list && list.length">
+    <li   ng-repeat="item in list" ng-click="toDetail(item)">
+        <div class="bus" data-title="最新"></div>
+        <div class="desc">
+            <h3>{{item.name?item.name:'线路名称'}}</h3>
+            <sub>开往 {{item.dest_station_name}} 方向</sub>
+            <sub>下一站 {{item.next_station_name}} 到达时间 {{item.next_station_arrive_time}}</sub>
+        </div>
+        <div class="action">
+            <span ></span>
+        </div>
+        <div class="arrow"></div>
     </li>
-    <li ng-show="list && list.length"  ng-repeat="item in list" ng-click="toDetail(item)">
-        <article>
-            <div>
-                <h3>集合地点：{{(item.dept && item.dept.length)?item.dept[0].short_name:''}} {{(item.dept && item.dept.length>1)?'等':''}}</h3>
-                <sub>{{item.event_date}} </sub>
-            </div>
-            <div>
-                <span ng-if="item.status==1" class="reversed">已预约</span>
-                <span ng-if="item.status==2" class="full">满员</span>
-            </div>
-            <div>
-                <span >￥{{item.price.origin}}</span>
-                <span ng-hide="item.price.vip" class="special">
-                    <span>哈罗价</span>￥{{item.price.hollo}}
-                </span>
-                <span ng-show="item.price.vip" class="special">
-                    <span>VIP价</span>￥{{item.price.vip}}
-                </span>
-            </div>
-        </article>
-    </li>
-    <div class="clear-fix loading  wait-loading" ng-class="{'show':loading && hasMore}">
-        正在加载中...
-    </div>
 </ul>
+<div class="clear-fix loading  wait-loading" ng-class="{'show':loading && hasMore}">
+    正在加载中...
+</div>

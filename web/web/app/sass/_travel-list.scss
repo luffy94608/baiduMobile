@@ -4,109 +4,94 @@
 @import "compass/css3";
 @import "compass/css3/box";
 @import "compass/utilities";
-
+.empty-title{
+  line-height: 100px;
+  text-align: center;
+  background-color: #fff;
+  color: #555;
+  font-size: 14px;
+}
 .hlt-list{
+  margin: 15px 0;
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+  padding-left: 20px;
   li{
     font-size: 16px;
-    margin: 10px 0;
-
-    header{
+    border-bottom: 1px solid $border-color;
+    @include display-box;
+    padding: 10px 10px;
+    &:last-child{
+      border-bottom: none;
+    }
+    .bus{
       position: relative;
-      height: (380px/2);
-      overflow: hidden;
-      &.new:after{
-        content: '';
+      top: 10px;
+      right: 10px;
+      display: block;
+      width: 24px;
+      height: 24px;
+      background: url("../images/icon-bus.png") no-repeat center;
+      @include background-size(100%);
+
+    }
+    .tag:before{
+      content: attr(data-title);
+      position: relative;
+      top: 0px;
+      right: 5px;
+      padding-top: 10px;
+      text-align: center;
+      letter-spacing: 0px;
+      font-size: 12px;
+      display: block;
+      line-height: 14px;
+      width: 20px;
+      height: 48px;
+      color: #ffffff;
+      background: url("../images/icon-tag.png") no-repeat center;
+      @include background-size(100%);
+
+    }
+    &>div.desc{
+      display: block;
+      @include box-flex(1);
+      h3{
+        font-size: 16px;
+        color: $text-1;
+        line-height: 30px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      sub{
         display: block;
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 44px;
-        height: 44px;
-        background: url("../images/new-zh.png") no-repeat center;
-        @include background-size(100%)
-      }
-      h2{
-        position: absolute;
-        bottom: 0;
-        @include box-sizing(border-box);
-        color: $text-3;
-        font-size: 1em;
-        width: 100%;
-        padding: 11px 5px 11px 10px;
-        background-color: #000000;
-        @include opacity(0.8);
-      }
-      img{
-        height: 100%;
-        width: 100%;
-//        background: url("../images/default@2x.png") no-repeat center;
-//        @include background-size(cover);
+        font-size: 14px;
+        color: $text-2;
+        line-height: 25px;
       }
     }
-
-    article{
-      @include display-box;
-      background-color: #ffffff;
-      padding: 6px 0 16px;
-      &>div:first-child{
+    &>div.action{
+      padding-top: 10px;
+      display: block;
+      position: relative;
+      span{
         display: block;
-        @include box-flex(1);
-        margin-left: 10px;
-        h3{
-          font-size: 16px;
-          color: $text-1;
-          line-height: 34px;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          overflow: hidden;
-        }
-        sub{
-          font-size: 14px;
-          color: $text-2;
-          line-height: 25px;
-        }
-      }
-      &>div:nth-child(2){
+        font-size: 14px;
+        color: $text-4;
+        text-align: right;
         line-height: 34px;
-        display: block;
-        span{
-          display: block;
-          font-size: 16px;
-          margin-left: 10px;
-        }
-        .reversed{
-          color: $text-5;
-        }
-        .full{
-          color: $text-10;
-        }
+        padding:0 10px 0 5px;
       }
-      &>div:last-child{
-        span{
-          display: block;
-          font-size: 17px;
-          color: $text-8;
-          text-align: right;
-          line-height: 34px;
-          padding:0 10px 0 5px;
-        }
-        span.special{
-          color: $text-3;
-          font-size: 14px;
-          background-color: $bg-4;
-          @include border-corner-radius(top,left,50px);
-          @include border-corner-radius(bottom,left,50px);
-          span{
-            display: inline-block;
-            color: $text-3;
-            @include opacity(0.8);
-            font-size: 11px;
-            padding-right: 0;
-
-          }
-
-        }
-      }
+    }
+    .arrow{
+      display: block;
+      width: 8px;
+      background: url("../images/icon-right.png") no-repeat center;
+      -moz-background-size: 100%;
+      -o-background-size: 100%;
+      -webkit-background-size: 100%;
+      background-size: 100%;
     }
   }
 }

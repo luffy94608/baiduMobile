@@ -73,20 +73,19 @@ angular.module('weChatHrApp', [
                 controller: 'ListCtrl',
                 resolve:{
                     initData:['$route','httpProtocol',function($route,httpProtocol){
-                        $route.current.title='旅游线路';
+                        $route.current.title='线路列表';
                         return  httpProtocol.wpost({},httpProtocol.POST_TYPE.GET_TRAVEL_LIST);
                     }]
                 }
             })
-            .when('/map/:id', {
+            .when('/map', {
                 templateUrl: '/views/map.html',
                 controller: 'MapCtrl',
                 resolve:{
                     initData:['$route','httpProtocol',function($route,httpProtocol){
-                        $route.current.title='集合点位置';
-                        var params=$route.current.params;
-                        var id=params['id'];
-                        return  httpProtocol.wpost({id:id},httpProtocol.POST_TYPE.GET_TRAVEL_DETAIL);
+                        $route.current.title='班车位置';
+
+                        return  httpProtocol.wpost({},httpProtocol.POST_TYPE.GET_TRAVEL_LIST);
                     }]
                 }
             })
@@ -145,10 +144,8 @@ angular.module('weChatHrApp', [
             titleRefresh();
         };
 
-        var iosUrl = $location.protocol()+'://'+$location.host()+ $location.url();
         $rootScope.$on('$routeChangeSuccess', function(){
             resetCustomHandle();
-
         });
 
         $rootScope.inWeChat = util.browser.inWeChat;

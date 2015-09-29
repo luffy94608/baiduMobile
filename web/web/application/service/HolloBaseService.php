@@ -128,7 +128,14 @@ class HolloBaseService
                     }
                     else
                     {
-                        $strPOST =  utf8_json_encode($param);
+                        if(empty($param))
+                        {
+                            $strPOST='{}';
+                        }
+                        else
+                        {
+                            $strPOST =  utf8_json_encode($param);
+                        }
                     }
                 }
                 else

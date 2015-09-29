@@ -24,7 +24,7 @@ class ControllerHollo extends ControllerBase
         }
         $params['type']=$this->getLegalParam('type','str');
 
-        $model=new UserModel();
+        $model=new HolloDataService();
         $result=$model->geoconvBaiduApi(floatval($params['lat']),floatval($params['lng']));
 
         if($params['type']=='jsonp')
@@ -48,7 +48,8 @@ class ControllerHollo extends ControllerBase
         $this->checkReferer();
         $params['timestamp']=$this->getLegalParam('timestamp','int',array(),0);//获取列表时间戳
         $params['cursor_id']=$this->getLegalParam('cursor_id','int',array(),0);//cursor_id
-        $params['city_id']=$this->getLegalParam('city_id','str',array(),'');//city_id
+        $params['lng']=$this->getLegalParam('lng','str',array(),'');
+        $params['lat']=$this->getLegalParam('lat','str',array(),'');
         $params['is_next']=$this->getLegalParam('is_next','enum',array(0,1),0);
         if(in_array(false,$params,true))
         {
@@ -56,7 +57,8 @@ class ControllerHollo extends ControllerBase
         }
 
         $model=new HolloDataService();
-        $result=$model->getTravelList($params['city_id'],$params['timestamp'], $params['is_next'], $params['cursor_id']);
+//        $result=$model->getTravelList($params['city_id'],$params['timestamp'], $params['is_next'], $params['cursor_id']);
+        $result=$model->getRouteList($params['timestamp'], $params['is_next'], $params['cursor_id'], $params['lat'], $params['lng']);
         $data='';
         if($result->code==0)
         {
@@ -100,7 +102,7 @@ class ControllerHollo extends ControllerBase
         }
 
         $model=new HolloDataService();
-        $result=$model->busPosition($params['id']);
+        $result=$model->searchBusLocation($params['id']);
         $data='';
         if($result->code==0)
         {

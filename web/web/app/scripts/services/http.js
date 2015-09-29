@@ -30,6 +30,14 @@ service.factory('httpProtocol',function($http,$q,$location,toast,$rootScope,APP_
         GET_TRAVEL_DETAIL:{
             prefix:halloUrl,
             url :"get-travel-detail"
+        },
+        TRANSLATE:{
+            prefix:halloUrl,
+            url :"translate"
+        },
+        SEARCH_BUS_PLACE:{
+            prefix:halloUrl,
+            url :"search-bus-place"
         }
 
 };

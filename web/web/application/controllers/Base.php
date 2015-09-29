@@ -61,7 +61,7 @@ class ControllerBase extends WechatControllerBase
 
     protected function checkReferer()
     {
-        return false;
+
         $refer = $_SERVER['HTTP_REFERER'];
         if(empty($refer))
             $this->inputRefererErrorResult();
@@ -69,7 +69,7 @@ class ControllerBase extends WechatControllerBase
         {
             $config = HaloEnv::get('config');
             $host = $config['url']['host'];
-            $legalHost = array($host,'local.hollo.baidu.com','wx.hollo.cn','wxdev.hollo.cn',);
+            $legalHost = array($host,'local.hollo.baidu.com','baidu.hollo.cn','bd.hollo.cn',);
             if($config['app']['debug'])
             {
                 $legalHost[] = '127.0.0.1';
