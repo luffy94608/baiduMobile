@@ -87,20 +87,20 @@ class ControllerHollo extends ControllerBase
         {
             $data=$result->data;
         }
-        $data=array(
-            'cur_loc'=>array(
-                'lat'=>40.04158147225453,
-                'lng'=>116.31060676942272
-            ),
-            "cur_pos"=> "测试地点",
-            "dest_station_arrive_time"=> null,
-            "dest_station_name"=> "天堂",
-            "line_code"=> "Z015",
-            "line_id"=> "5518d816471d06247467ff33",
-            "line_schedule_id"=> "5574e9123deae2e73b602d83",
-            "next_station_arrive_time"=> "08:40",
-            "next_station_name"=> "云南"
-        );
+//        $data=array(
+//            'cur_loc'=>array(
+//                'lat'=>40.04158147225453,
+//                'lng'=>116.31060676942272
+//            ),
+//            "cur_pos"=> "测试地点",
+//            "dest_station_arrive_time"=> null,
+//            "dest_station_name"=> "天堂",
+//            "line_code"=> "Z015",
+//            "line_id"=> "5518d816471d06247467ff33",
+//            "line_schedule_id"=> "5574e9123deae2e73b602d83",
+//            "next_station_arrive_time"=> "08:40",
+//            "next_station_name"=> "云南"
+//        );
         $this->inputResult($data);
     }
 
