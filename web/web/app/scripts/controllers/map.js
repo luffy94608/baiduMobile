@@ -38,7 +38,8 @@ angular.module('weChatHrApp')
             var myIcon = new BMap.Icon(APP_URL+"/images/icon-bus-position.png", new BMap.Size(40, 40), {
                 imageSize: new BMap.Size(40, 40),
             });
-            map.removeOverlay($scope.busMarkers[info.line_schedule_id]);
+            map.removeOverlay($scope.busMarkers[$scope.currentLocation.line_schedule_id]);
+
             busMarker = new BMap.Marker(initPoint[0],{icon:myIcon,offset:new BMap.Size(0, -20)});  // 创建标注
             var content ='当前位置：'+info.cur_pos+'<br/>下一站：'+info.next_station_name+'<br/>预计时间：'+info.next_station_arrive_time;
             map.addOverlay(busMarker);               // 将标注添加到地图中

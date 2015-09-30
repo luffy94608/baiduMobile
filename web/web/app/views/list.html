@@ -1,7 +1,8 @@
 <li class="empty-title" ng-hide="list && list.length">
     暂无线路
 </li>
-<ul class="hlt-list" when-scrolled="loadMore()" when-end="hasMore" ng-show="list && list.length">
+<!--<ul class="hlt-list" when-scrolled="loadMore()" when-end="hasMore" ng-show="list && list.length">-->
+<ul class="hlt-list"  ng-show="list && list.length">
     <li   ng-repeat="item in list" ng-click="toDetail(item)">
         <div class="bus" data-title="最新"></div>
         <div class="desc">
