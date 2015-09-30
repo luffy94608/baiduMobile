@@ -44,7 +44,7 @@ angular.module('weChatHrApp')
             var content ='当前位置：'+info.cur_pos+'<br/>下一站：'+info.next_station_name+'<br/>预计时间：'+info.next_station_arrive_time;
             map.addOverlay(busMarker);               // 将标注添加到地图中
             addClickHandler(content,busMarker);
-            $scope.busMarkers[info.line_schedule_id]=busMarker;
+            $scope.busMarkers[$scope.currentLocation.line_schedule_id]=busMarker;
             //busMarker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
         };
         function addClickHandler(content,marker){
