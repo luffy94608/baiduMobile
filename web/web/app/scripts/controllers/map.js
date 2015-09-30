@@ -132,6 +132,7 @@ angular.module('weChatHrApp')
                         }else{
                             hasSetView=false;
                         }
+                        data.line_schedule_id=id;
                         $scope.slides[$scope.indexMap[id]].info=data;
                         if(data.cur_loc){
                             initBusPointMap(data.cur_loc.lng,data.cur_loc.lat,data,hasSetView);
