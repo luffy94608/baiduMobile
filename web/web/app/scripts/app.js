@@ -68,7 +68,7 @@ angular.module('weChatHrApp', [
     .config(['$routeProvider','$sceDelegateProvider','cfpLoadingBarProvider','$locationProvider',function ($routeProvider,$sceDelegateProvider,cfpLoadingBarProvider,$locationProvider) {
         $locationProvider.html5Mode(true);
         $routeProvider
-            .when('/', {
+            .when('/list', {
                 templateUrl: '/views/list.html',
                 controller: 'ListCtrl',
                 resolve:{
