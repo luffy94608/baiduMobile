@@ -78,7 +78,9 @@ angular.module('weChatHrApp')
              */
             $scope.info=data.nearby_buses;
             for(var i=0;i<$scope.info.length;i++){
-                initBusPointMap($scope.info[i].cur_loc.lng,$scope.info[i].cur_loc.lat,$scope.info[i],true);
+                if($scope.info[i].cur_loc){
+                    initBusPointMap($scope.info[i].cur_loc.lng,$scope.info[i].cur_loc.lat,$scope.info[i],true);
+                }
             }
             /**
              * 轮播图初始化
@@ -239,7 +241,7 @@ angular.module('weChatHrApp')
                             map.removeOverlay(meMarker);
                             var mePoint= new BMap.Point(data[0].x,data[0].y);
                             var meIcon = new BMap.Icon(APP_URL+"/images/icon-position-me.png", new BMap.Size(67, 67), {
-                                imageSize: new BMap.Size(67, 67),
+                                imageSize: new BMap.Size(67, 67)
                             });
                             meMarker = new BMap.Marker(mePoint,{icon:meIcon,offset:new BMap.Size(0, -33)});
                             map.addOverlay(meMarker);
