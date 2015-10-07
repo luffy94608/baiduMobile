@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('weChatHrApp')
-    .controller('MapCtrl', function (APP_URL,$rootScope,$scope,initData,$routeParams,$location,httpProtocol,$timeout,$interval) {
+    .controller('MapCtrl', function (APP_URL,$rootScope,$window,$scope,initData,$routeParams,$location,httpProtocol,$timeout,$interval) {
         $scope.info='';
         $scope.indexMap={};
         $scope.id=$routeParams['id'];
@@ -112,11 +112,10 @@ angular.module('weChatHrApp')
          */
         var isRequesting=false;
         var initCount=0;
-        var $timer=$rootScope.timer;
         var timeoutLocationBus=function(){
             initCount=0;
-            if($timer){
-                $interval.cancel($timer);
+            if($rootScope.timer){
+                $interval.cancel($rootScope.timer);
             }
             var initAutoGetLocationData=function(timer){
                 var id=$scope.currentLocation.line_schedule_id;
@@ -154,9 +153,9 @@ angular.module('weChatHrApp')
                     isRequesting=false;
                 });
             };
-            initAutoGetLocationData($timer);
-            $timer=$interval(function(){
-                initAutoGetLocationData($timer);
+            initAutoGetLocationData($rootScope.timer);
+            $rootScope.timer=$interval(function(){
+                initAutoGetLocationData($rootScope.timer);
             },5000);
         };
 
