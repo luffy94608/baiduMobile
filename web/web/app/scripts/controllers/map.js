@@ -112,7 +112,7 @@ angular.module('weChatHrApp')
          */
         var isRequesting=false;
         var initCount=0;
-        var $timer;
+        var $timer=$rootScope.timer;
         var timeoutLocationBus=function(){
             initCount=0;
             if($timer){

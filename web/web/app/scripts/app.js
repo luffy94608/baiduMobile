@@ -74,8 +74,7 @@ angular.module('weChatHrApp', [
                 resolve:{
                     initData:['$route','httpProtocol',function($route,httpProtocol){
                         $route.current.title='线路列表';
-                        return false;
-                        //return  httpProtocol.wpost({},httpProtocol.POST_TYPE.GET_TRAVEL_LIST);
+                        return  httpProtocol.wpost({},httpProtocol.POST_TYPE.GET_TRAVEL_LIST);
                     }]
                 }
             })
@@ -114,7 +113,7 @@ angular.module('weChatHrApp', [
                 redirectTo: '/error'
             });
     }])
-    .run(['$route','$rootScope','string','httpProtocol','$timeout','toast','$location','$window','util','APP_CDN_ROOT',function($route,$rootScope,string,httpProtocol,$timeout,toast,$location,$window,util,APP_CDN_ROOT){
+    .run(['$route','$rootScope','string','httpProtocol','$timeout','$interval','toast','$location','$window','util','APP_CDN_ROOT',function($route,$rootScope,string,httpProtocol,$timeout,$interval,toast,$location,$window,util,APP_CDN_ROOT){
 
         //处理ios微信中标题不变bug
         var titleRefresh = function () {
@@ -128,7 +127,7 @@ angular.module('weChatHrApp', [
         };
         //重置自定义操作绑定的操作 如加载更多 remind 等
         var resetCustomHandle=function(){
-            //$('#loading_page').hide();//隐藏loading page
+            $('#loading_page').hide();//隐藏loading page
             //清空定时器
             if(window.loadingInterval){
                 clearInterval(window.loadingInterval);
@@ -149,6 +148,7 @@ angular.module('weChatHrApp', [
 
         $rootScope.$on('$routeChangeSuccess', function(){
             resetCustomHandle();
+            $interval.cancel($rootScope.timer)
         });
 
         $rootScope.inWeChat = util.browser.inWeChat;
