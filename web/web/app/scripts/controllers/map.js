@@ -38,8 +38,8 @@ angular.module('weChatHrApp')
             var myIcon = new BMap.Icon(APP_URL+"/images/icon-bus-position.png", new BMap.Size(40, 40), {
                 imageSize: new BMap.Size(40, 40),
             });
-            map.removeOverlay($scope.busMarkers[info.line_schedule_id]);
-
+            //map.removeOverlay($scope.busMarkers[info.line_schedule_id]);
+            map.clearOverlays();
             busMarker = new BMap.Marker(initPoint[0],{icon:myIcon,offset:new BMap.Size(0, -20)});  // 创建标注
             var content ='当前位置：'+info.cur_pos+'<br/>下一站：'+info.next_station_name+'<br/>预计时间：'+info.next_station_arrive_time;
             map.addOverlay(busMarker);               // 将标注添加到地图中
@@ -141,7 +141,8 @@ angular.module('weChatHrApp')
                             return false;
                         }
                     }else{
-                        map.removeOverlay($scope.busMarkers[id]);
+                        //map.removeOverlay($scope.busMarkers[id]);
+                        map.clearOverlays();
                         $scope.slides[$scope.indexMap[id]].info.is_close=true;
                         //if($timer){
                         //    $interval.cancel($timer);
@@ -153,6 +154,7 @@ angular.module('weChatHrApp')
                     isRequesting=false;
                 });
             };
+            initAutoGetLocationData($timer);
             $timer=$interval(function(){
                 initAutoGetLocationData($timer);
             },5000);
@@ -162,14 +164,15 @@ angular.module('weChatHrApp')
          * 坐标切换
          */
         $scope.panTo=function(item,index){
+            $scope.currentLocation=item;
+            $scope.currentindex=index;
             if(item.is_close){
                 return false;
             }
             if(item.cur_loc && item.cur_loc.lng && item.cur_loc.lat){
                 var movePoint=new BMap.Point( item.cur_loc.lng,item.cur_loc.lat);
                 map.panTo(movePoint);
-                $scope.currentLocation=item;
-                $scope.currentindex=index;
+
                 //timeoutLocationBus();
             }
         };
