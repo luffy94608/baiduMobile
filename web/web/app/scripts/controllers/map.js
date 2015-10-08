@@ -14,7 +14,7 @@ angular.module('weChatHrApp')
         // 百度地图初始化
         var map = new BMap.Map("mapContainer");
         var centerPoint = new BMap.Point(116.331398,39.897445);
-        map.centerAndZoom(centerPoint, 11);
+        map.centerAndZoom(centerPoint, 13);
         var top_right_navigation=new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_ZOOM}); //右上角，仅包含平移和缩放按钮
         map.addControl(top_right_navigation);
         /**
@@ -41,7 +41,7 @@ angular.module('weChatHrApp')
             //map.removeOverlay($scope.busMarkers[info.line_schedule_id]);
             map.clearOverlays();
             busMarker = new BMap.Marker(initPoint[0],{icon:myIcon,offset:new BMap.Size(0, -20)});  // 创建标注
-            var content ='当前位置：'+info.cur_pos+'<br/>下一站：'+info.next_station_name+'<br/>预计时间：'+info.next_station_arrive_time;
+            var content ='当前位置：'+info.cur_pos+'<br/>下一站：'+info.next_station_name;
             map.addOverlay(busMarker);               // 将标注添加到地图中
             addClickHandler(content,busMarker);
             $scope.busMarkers[info.line_schedule_id]=busMarker;
@@ -162,16 +162,20 @@ angular.module('weChatHrApp')
         /**
          * 坐标切换
          */
+        var panCount=0;
         $scope.panTo=function(item,index){
             $scope.currentLocation=item;
             $scope.currentindex=index;
             if(item.is_close){
                 return false;
             }
+            ++panCount;
+            if(panCount>1){
+                return false;
+            }
             if(item.cur_loc && item.cur_loc.lng && item.cur_loc.lat){
                 var movePoint=new BMap.Point( item.cur_loc.lng,item.cur_loc.lat);
                 map.panTo(movePoint);
-
                 //timeoutLocationBus();
             }
         };
@@ -190,6 +194,7 @@ angular.module('weChatHrApp')
          */
         $scope.$watch('currentindex',function(nVal,oVal){
             timeoutLocationBus();
+            panCount=0;
         });
 
         /**

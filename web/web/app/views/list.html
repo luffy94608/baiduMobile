@@ -6,9 +6,11 @@
     <li   ng-repeat="item in list" ng-click="toDetail(item)">
         <div class="bus" data-title="最新"></div>
         <div class="desc">
-            <h3>{{item.name?item.name:'线路名称'}}</h3>
-            <sub>开往 {{item.dest_station_name}} 方向</sub>
-            <sub>下一站 {{item.next_station_name}} 到达时间 {{item.next_station_arrive_time}}</sub>
+            <h3>{{item.line_code?item.line_code:''}} {{item.name?item.name:'未知线路'}}</h3>
+            <sub>点击查看实时位置信息</sub>
+            <!--<sub>开往 {{item.dest_station_name}} 方向</sub>-->
+            <!--<sub>下一站 {{item.next_station_name}}</sub>-->
+            <!--<sub>下一站 {{item.next_station_name}} 到达时间 {{item.next_station_arrive_time}}</sub>-->
         </div>
         <div class="action">
             <span ></span>
