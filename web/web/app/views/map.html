@@ -14,7 +14,7 @@
                             </div>
                             <div ng-hide="slide.info.is_close">
                                 <p>当前位置：{{slide.info.cur_pos?slide.info.cur_pos:'暂无当前位置信息'}}</p>
-                                <p>位置时间：{{slide.info.time?(slide.info.time | date:'MM月dd日 HH:mm'):''}}</p>
+                                <p>位置时间：{{slide.info.time?(slide.info.time*1000 | date:'MM月dd日 HH:mm'):''}}</p>
                                 <p ng-show="slide.info.cur_pos">下一站：{{slide.info.next_station_name?slide.info.next_station_name:'暂无下一站信息'}} </p>
                             </div>
 
