@@ -39,7 +39,12 @@ angular.module('weChatHrApp')
                 imageSize: new BMap.Size(40, 40),
             });
             //map.removeOverlay($scope.busMarkers[info.line_schedule_id]);
-            map.clearOverlays();
+            //map.clearOverlays();
+            if($scope.busMarkers){
+                for(var tmpIndex in $scope.busMarkers){
+                    map.removeOverlay($scope.busMarkers[tmpIndex]);
+                }
+            }
             busMarker = new BMap.Marker(initPoint[0],{icon:myIcon,offset:new BMap.Size(0, -20)});  // 创建标注
             var timeStr='';
             if(info.time){
@@ -147,7 +152,12 @@ angular.module('weChatHrApp')
                         }
                     }else{
                         //map.removeOverlay($scope.busMarkers[id]);
-                        map.clearOverlays();
+                        //map.clearOverlays();
+                        if($scope.busMarkers){
+                            for(var tmpIndex in $scope.busMarkers){
+                                map.removeOverlay($scope.busMarkers[tmpIndex]);
+                            }
+                        }
                         $scope.slides[$scope.indexMap[id]].info.is_close=true;
                         //if($timer){
                         //    $interval.cancel($timer);
