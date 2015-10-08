@@ -41,7 +41,12 @@ angular.module('weChatHrApp')
             //map.removeOverlay($scope.busMarkers[info.line_schedule_id]);
             map.clearOverlays();
             busMarker = new BMap.Marker(initPoint[0],{icon:myIcon,offset:new BMap.Size(0, -20)});  // 创建标注
-            var content ='当前位置：'+info.cur_pos+'<br/>下一站：'+info.next_station_name;
+            var timeStr='';
+            if(info.time){
+                var tmpTime=new Date(info.time*1000);
+                timeStr=(tmpTime.getMonth()+1)+'月'+tmpTime.getDate()+'日 '+tmpTime.getHours()+': '+tmpTime.getMinutes();
+            }
+            var content ='当前位置：'+info.cur_pos+'<br/>位置时间：'+timeStr+'<br/>下一站：'+info.next_station_name;
             map.addOverlay(busMarker);               // 将标注添加到地图中
             addClickHandler(content,busMarker);
             $scope.busMarkers[info.line_schedule_id]=busMarker;
@@ -95,6 +100,7 @@ angular.module('weChatHrApp')
                         id: i,
                         label: 'slide #' +(i),
                         info: $scope.info[i],
+                        line_code: $scope.info[i].line_code,
                         name: $scope.info[i].name,
                         odd: (i % 2 === 0)
                     };
