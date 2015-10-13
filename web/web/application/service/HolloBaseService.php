@@ -31,10 +31,10 @@ define('DaySecs',60*60*24);
 
 class HolloBaseService
 {
-    const API_URL_PREFIX = 'http://211.151.0.150:80';
-    const API_V2_URL_PREFIX = 'http://211.151.0.150:80';
-//    const API_URL_PREFIX = 'http://api.hollo.cn';
-//    const API_V2_URL_PREFIX = 'http://api.hollo.cn';
+//    const API_URL_PREFIX = 'http://211.151.0.150:80';
+//    const API_V2_URL_PREFIX = 'http://211.151.0.150:80';
+    const API_URL_PREFIX = 'http://api.hollo.cn';
+    const API_V2_URL_PREFIX = 'http://api.hollo.cn';
 
     public $token;
 
